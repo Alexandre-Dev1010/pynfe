@@ -112,7 +112,8 @@ class SerializacaoXML(Serializacao):
         else:
             etree.SubElement(raiz, "CNPJ").text = so_numeros(emitente.cnpj)
         etree.SubElement(raiz, "xNome").text = emitente.razao_social
-        etree.SubElement(raiz, "xFant").text = emitente.nome_fantasia
+        if emitente.nome_fantasia != "":
+            etree.SubElement(raiz, "xFant").text = emitente.nome_fantasia
         # Endereço
         endereco = etree.SubElement(raiz, "enderEmit")
         etree.SubElement(endereco, "xLgr").text = emitente.endereco_logradouro
